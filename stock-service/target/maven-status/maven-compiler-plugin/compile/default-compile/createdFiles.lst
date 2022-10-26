@@ -1,8 +1,0 @@
-com\rajeshkawali\repository\StockRepository.class
-com\rajeshkawali\dto\StockResponse$StockResponseBuilder.class
-com\rajeshkawali\controller\StockController.class
-com\rajeshkawali\service\StockService.class
-com\rajeshkawali\StockServiceApplication.class
-com\rajeshkawali\model\Stock.class
-com\rajeshkawali\service\StockServiceImpl.class
-com\rajeshkawali\dto\StockResponse.class
