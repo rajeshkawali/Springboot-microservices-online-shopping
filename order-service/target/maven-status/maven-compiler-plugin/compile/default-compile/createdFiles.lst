@@ -1,0 +1,13 @@
+com\rajeshkawali\service\OrderServiceImpl.class
+com\rajeshkawali\controller\OrderController.class
+com\rajeshkawali\model\Order.class
+com\rajeshkawali\OrderServiceApplication.class
+com\rajeshkawali\repository\OrderRepository.class
+com\rajeshkawali\event\OrderPlacedEvent.class
+com\rajeshkawali\dto\InventoryResponse$InventoryResponseBuilder.class
+com\rajeshkawali\dto\OrderLineItemsDto.class
+com\rajeshkawali\service\OrderService.class
+com\rajeshkawali\dto\OrderRequest.class
+com\rajeshkawali\dto\InventoryResponse.class
+com\rajeshkawali\model\OrderLineItems.class
+com\rajeshkawali\config\WebClientConfig.class
