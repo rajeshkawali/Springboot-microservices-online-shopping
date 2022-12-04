@@ -1,7 +1,6 @@
-package com.rajeshkawali.dto;
+package com.rajeshkawali.model.event;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 /**
@@ -11,8 +10,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class StockResponse {
-    private String skuCode;
-    private boolean isInStock;
+public class OrderPlacedEvent {
+    private String orderNumber;
 }

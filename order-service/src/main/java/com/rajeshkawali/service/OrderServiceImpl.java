@@ -3,12 +3,13 @@ package com.rajeshkawali.service;
 import com.rajeshkawali.dto.OrderLineItemsDto;
 import com.rajeshkawali.dto.OrderRequest;
 import com.rajeshkawali.dto.StockResponse;
+import com.rajeshkawali.model.event.OrderPlacedEvent;
 import com.rajeshkawali.model.Order;
 import com.rajeshkawali.model.OrderLineItems;
 import com.rajeshkawali.repository.OrderRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -28,8 +29,8 @@ public class OrderServiceImpl implements OrderService {
     public static final String CLASS_NAME = OrderServiceImpl.class.getName();
     @Autowired private OrderRepository orderRepository;
     @Autowired private  WebClient.Builder webClientBuilder;
-    //private final Tracer tracer;
-    //private final KafkaTemplate<String, OrderPlacedEvent> kafkaTemplate;
+    @Autowired
+    private KafkaTemplate<String, OrderPlacedEvent> kafkaTemplate;
 
     @Override
     public String placeOrder(OrderRequest orderRequest) {
@@ -61,7 +62,13 @@ public class OrderServiceImpl implements OrderService {
 
         if (allProductsInStock) {
             order = orderRepository.save(order);
-            log.debug(CLASS_NAME + _function + "::Order Placed Successfully: {}",order.toString());
+            log.info(CLASS_NAME + _function + "::Order Placed Successfully: {}",order.toString());
+            try {
+                kafkaTemplate.send("notifyTopic", new OrderPlacedEvent(order.getOrderNumber()));
+            }catch(Exception e){
+                log.error(CLASS_NAME + _function + "::Exception: "+e);
+            }
+            log.info(CLASS_NAME + _function + "::Order placed notification sent Successfully");
             log.info(CLASS_NAME + _function + "::EXIT");
             return "Order Placed Successfully";
         } else {
