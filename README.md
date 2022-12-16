@@ -2,7 +2,7 @@
 Springboot microservices online shopping 
 
 
-#To setup Zipkin
+# To setup Zipkin
 https://zipkin.io/pages/quickstart
 
 C:\Users\rajesh> docker run -d -p 9411:9411 openzipkin/zipkin --> To download and run zipkin
@@ -14,7 +14,7 @@ CONTAINER ID   IMAGE               COMMAND          CREATED          STATUS     
 
 C:\Users\rajesh> docker kill 55793af3637f --> To kill container using containerId
 
-# To open Ui in browser:
+# To open zipkin UI in browser:
 http://localhost:9411/zipkin/
 
 # To run the docker-compose file
